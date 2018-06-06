@@ -1,22 +1,22 @@
-A sample Python project
+blink1_state
 =======================
 
-A sample project that exists as an aid to the `Python Packaging User Guide
-<https://packaging.python.org>`_'s `Tutorial on Packaging and Distributing
-Projects <https://packaging.python.org/en/latest/distributing.html>`_.
+blink1_state is a state machine for the `Blink(1)<https://blink1.thingm.com/>`_
+LED. It significantly simplifies the programmable pattern playing for one or
+two colour patterns with an optional initial pause.
 
-This projects does not aim to cover best practices for Python project
-development as a whole. For example, it does not provide guidance or tool
-recommendations for version control, documentation, or testing.
+The audience for this is anyone who wants to concisely transition between
+states for their Blink(1) within a Python script.
 
 `The source for this project is available here
-<https://github.com/pypa/sampleproject>`_.
+<https://github.com/tifoster/blink1_state>`_.
 
-Most of the configuration for a Python project is done in the ``setup.py``
-file, an example of which is included in this project. You should edit this
-file accordingly to adapt this sample project to your needs.
+Copyright (c) 2018 Akamai Technologies, Inc.
 
 ----
+
+This project was based on the Python Sample Project distributed from
+`<https://packaging.python.org/>`_.
 
 This is the README file for the project.
 

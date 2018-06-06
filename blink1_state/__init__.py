@@ -53,6 +53,11 @@ class StateMachine():
             b1.play(0, target_state.blink_cluster * 2)
         b1.close()
 
+    def shutdown(self):
+        b1 = Blink1()
+        b1.off()
+        b1.close()
+
 
 if __name__ == '__main__':
     s1 = StateMachine()
@@ -78,3 +83,4 @@ if __name__ == '__main__':
                         long_gap=2000,
                         secondary_colour='#FF0000'))
     print("Transitioned to alternating red and yellow")
+    s1.shutdown()
