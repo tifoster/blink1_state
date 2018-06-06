@@ -15,6 +15,14 @@ class State():
         self.long_gap = long_gap
         self.blink_cluster = blink_cluster
 
+    def __repr__(self):
+        return "State(colour='{}', secondary_colour='{}', blink_cluster='{}',"\
+               "short_gap='{}', long_gap='{}')".format(self.colour,
+                                                       self.secondary_colour,
+                                                       self.blink_cluster,
+                                                       self.short_gap,
+                                                       self.long_gap)
+
 
 class StateMachine():
     def __init__(self):
@@ -31,10 +39,14 @@ class StateMachine():
             b1.fade_to_color(std_transition, target_state.colour)
             b1.close()
             return
+        elif target_state.blink_cluster > 8:
+            target_state.blink_cluster = 8
+            target_state.long_gap = target_state.short_gap
+        # print(target_state)
         b1.writePatternLine(target_state.long_gap,
                             target_state.secondary_colour,
                             0)
-        for line in range(1, target_state.blink_cluster * 2 + 1):
+        for line in range(1, target_state.blink_cluster * 2):
             if line % 2:
                 b1.writePatternLine(target_state.short_gap,
                                     target_state.colour,
@@ -43,14 +55,11 @@ class StateMachine():
                 b1.writePatternLine(target_state.short_gap,
                                     target_state.secondary_colour,
                                     line)
-        print("Here's what we've got from 0 to {}:"
-              "".format(target_state.blink_cluster * 2 + 1))
-        for line in range(target_state.blink_cluster * 2 + 1):
-            print(b1.readPatternLine(line))
-        if target_state.blink_cluster > 7:
-            b1.play(1, target_state.blink_cluster * 2)
-        else:
-            b1.play(0, target_state.blink_cluster * 2)
+        # print("Here's what we've got from 0 to {}:"
+        #      "".format(target_state.blink_cluster * 2))
+        # for line in range(target_state.blink_cluster * 2):
+        #    print(b1.readPatternLine(line))
+        b1.play(0, target_state.blink_cluster * 2)
         b1.close()
 
     def shutdown(self):
