@@ -1,7 +1,7 @@
 blink1_state
 =======================
 
-blink1_state is a state machine for the `Blink(1)<https://blink1.thingm.com/>`_
+blink1_state is a state machine for the `Blink(1) <https://blink1.thingm.com/>`_
 LED. It significantly simplifies the programmable pattern playing for one or
 two colour patterns with an optional initial pause.
 
