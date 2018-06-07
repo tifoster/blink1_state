@@ -16,12 +16,12 @@ class State():
         self.blink_cluster = blink_cluster
 
     def __repr__(self):
-        return "State(colour='{}', secondary_colour='{}', blink_cluster='{}',"\
-               "short_gap='{}', long_gap='{}')".format(self.colour,
-                                                       self.secondary_colour,
-                                                       self.blink_cluster,
-                                                       self.short_gap,
-                                                       self.long_gap)
+        return "State(colour='{}', secondary_colour='{}', blink_cluster={},"\
+               "short_gap={}, long_gap={})".format(self.colour,
+                                                   self.secondary_colour,
+                                                   self.blink_cluster,
+                                                   self.short_gap,
+                                                   self.long_gap)
 
 
 class StateMachine():
@@ -29,8 +29,8 @@ class StateMachine():
         self.current_state = State()
 
     def transition(self, target_state, transition_time=0):
-        b1 = Blink1()
         std_transition = 1000
+        b1 = Blink1()
         if target_state == self.current_state:
             b1.close()
             return
@@ -49,17 +49,13 @@ class StateMachine():
         for line in range(1, target_state.blink_cluster * 2):
             if line % 2:
                 b1.writePatternLine(target_state.short_gap,
-                                    target_state.colour,
+                                    target_state.secondary_colour,
                                     line)
             else:
                 b1.writePatternLine(target_state.short_gap,
-                                    target_state.secondary_colour,
+                                    target_state.colour,
                                     line)
-        # print("Here's what we've got from 0 to {}:"
-        #      "".format(target_state.blink_cluster * 2))
-        # for line in range(target_state.blink_cluster * 2):
-        #    print(b1.readPatternLine(line))
-        b1.play(0, target_state.blink_cluster * 2)
+        b1.play(0, target_state.blink_cluster * 2 - 1)
         b1.close()
 
     def shutdown(self):
