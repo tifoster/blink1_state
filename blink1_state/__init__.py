@@ -16,7 +16,7 @@ class State():
         self.blink_cluster = blink_cluster
 
     def __repr__(self):
-        return "State(colour='{}', secondary_colour='{}', blink_cluster={},"\
+        return "State(colour='{}', secondary_colour='{}', blink_cluster={}," \
                "short_gap={}, long_gap={})".format(self.colour,
                                                    self.secondary_colour,
                                                    self.blink_cluster,
@@ -42,7 +42,6 @@ class StateMachine():
         elif target_state.blink_cluster > 8:
             target_state.blink_cluster = 8
             target_state.long_gap = target_state.short_gap
-        # print(target_state)
         b1.writePatternLine(target_state.long_gap,
                             target_state.secondary_colour,
                             0)
