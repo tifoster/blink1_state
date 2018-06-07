@@ -46,7 +46,7 @@ class StateMachine():
                             target_state.secondary_colour,
                             0)
         for line in range(1, target_state.blink_cluster * 2):
-            if line % 2:
+            if not line % 2:
                 b1.writePatternLine(target_state.short_gap,
                                     target_state.secondary_colour,
                                     line)
