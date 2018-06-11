@@ -23,6 +23,9 @@ class State():
                                                    self.short_gap,
                                                    self.long_gap)
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 
 class StateMachine():
     def __init__(self):
@@ -46,16 +49,17 @@ class StateMachine():
                             target_state.secondary_colour,
                             0)
         for line in range(1, target_state.blink_cluster * 2):
-            if not line % 2:
-                b1.writePatternLine(target_state.short_gap,
-                                    target_state.secondary_colour,
-                                    line)
-            else:
+            if line % 2:
                 b1.writePatternLine(target_state.short_gap,
                                     target_state.colour,
                                     line)
+            else:
+                b1.writePatternLine(target_state.short_gap,
+                                    target_state.secondary_colour,
+                                    line)
         b1.play(0, target_state.blink_cluster * 2 - 1)
         b1.close()
+        self.current_state = target_state
 
     def shutdown(self):
         b1 = Blink1()
